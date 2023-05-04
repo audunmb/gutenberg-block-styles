@@ -14,48 +14,45 @@ This repository is a WordPress plugin that includes a single custom block style.
 
 All you really need to get started is: 
 
-- The courage to edit a few lines in a single PHP file. 
+- The courage to edit a few lines in a single Javascript file. 
 - Knowledge of CSS.
-- A WordPress site to upload this plugin to (Alternatively, you can run a single Terminal command to create a quick development environment instead).  
+- A WordPress site to upload this plugin to.
 
 ## Customization
 
 Adding + editing block styles is a three step process: 
 
-**1. Open up the `index.php` file and adjust the block type, name, and label for your new block style.**
+**1. Open up the custom-block-styles.js file and adjust the block type, name, and label for your new block style.**
 
 For example, the built-in example adds a "Blue Paragraph" block style to the core Paragraph block: 
 
-```php
-register_block_style(
-	'core/paragraph', // Block type name "paragraph" including namespace "core"
-	array(            // Properties of the style
-		'name'         => 'blue-paragraph',
-		'label'        => 'Blue Paragraph',
-		'style_handle' => 'block-styles-stylesheet',
-	)
-);
+```js
+/* Register styles */
+
+wp.blocks.registerBlockStyle('core/paragraph', {
+	name: 'blue-paragraph',
+	label: wp.i18n.__( 'Blue Paragraph', 'textdomain' ),
+});```
+
 ```
 
-Here's another example, adding an "Awesome Cover" style to the Cover block: 
+Here's another example, adding an "Awesome Cover" style to the Cover block:
+```js
+/* Register styles */
 
-```php
-register_block_style(
-	'core/cover', // Block type name "cover" including namespace "core"
-	array(        // Properties of the style
-		'name'         => 'awesome-cover',
-		'label'        => 'Awesome Cover',
-		'style_handle' => 'block-styles-stylesheet',
-	)
-);
+wp.blocks.registerBlockStyle('core/cover', {
+	name: 'awesome-cover',
+	label: wp.i18n.__( 'Awesome Cover', 'textdomain' ),
+});```
+
 ```
 
-* The block name in the second line should refer to the official title for the block.
-* The `name` Property should be lowercase letters with hyphens. It is used to generate the class for your block style.
-* The `label` Property should be human readable, and probably translatable.
-* The `style_handle` Property needs to be the handle of a style previously registered using `wp_register_style()`
 
-If you'd like to add multiple block styles in the same plugin, duplicate those 8 lines and replace the Properties.
+* The block name on the first line should is the block you apply the style to. It's in the format _source/name_. Source is either _core_ for the regular blocks or the name of the plugin/theme that adds the block. [Wordpress Core Blocks reference](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/) gives the name for all the core blocks. 
+* The `name` Property should be lowercase letters with hyphens. It is used to generate the class for your block style (see below). Make sure it's unique enough to avoid conflicts.
+* The `label` Property should be human readable, and probably translatable. (I'll add more on translation to this plugin at some point).
+
+If you'd like to add multiple block styles in the same plugin, duplicate those lines and replace the Properties.
 
 **2. From there, add the CSS to style your new block style.**
 
@@ -68,7 +65,7 @@ Block style classnames are automatically created using the following format:
 `.is-style-blue-paragraph`
 `.is-style-awesome-cover`
 
-Open up the `style.css` file, and add any CSS styles for your block. Anything you declare should be added to both the front and back end automatically.
+Open up the `custom-block-style.css` file, and add any CSS styles for your block. Anything you declare should be added to both the front and back end automatically.
 
 **3. Test your changes.**
 
@@ -76,9 +73,6 @@ Zip up the plugin with your changes and upload to your site, or if you'd prefer,
 
 ## More Documentation
 
-- [Block Style Variations](https://developer.wordpress.org/block-editor/developers/filters/block-filters/#block-style-variations) in the Block Editor Handbook
-- [Server-side Registration Helper](https://developer.wordpress.org/block-editor/developers/filters/block-filters/#server-side-registration-helper) in the Block Editor Handbook (This is the method of registration used in these examples.)
+- [Block Style Variations](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/) in the Block Editor Handbook
 
-## Questions? 
 
-Happy to help! Open an issue (or a PR!), ping `@kjellr` on twitter, or `@kjellr` on WordPress.org slack. 
