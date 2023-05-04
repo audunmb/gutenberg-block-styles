@@ -65,7 +65,7 @@ Open up the `custom-block-style.css` file, and add any CSS styles for your block
 
 **3. Test your changes.**
 
-Zip up the plugin with your changes and upload to your site, or if you'd prefer, test the changes in real-time using the included [Docker-powered dev environment](DOCKER.md). 🎉
+Zip up the plugin with your changes and upload to your site. 🎉
 
 ## More Documentation
 
