@@ -6,10 +6,6 @@ This repository is an introduction to one of the simplest forms of customization
 
 ![Block Styles Example](https://cldup.com/xpyaqSiB3h-3000x3000.png)
 
-Read more about block styles in this ThemeShaper post: 
-
-[**📄 Customizing Gutenberg blocks with block styles**](https://themeshaper.com/2019/02/15/customizing-gutenberg-blocks-with-block-styles/)
-
 This repository is a WordPress plugin that includes a single custom block style. It's fairly barebones, and is meant to provide a boilerplate for more complicated plugins. The code here is a lightweight introduction to Gutenberg block customization, and doesn't require you to mess around with `npm`, themes, php, or (much) JavaScript. 
 
 All you really need to get started is: 
